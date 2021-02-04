@@ -14,6 +14,15 @@ const boardgameController = {
         const game = await Boardgame.findOne(gameId);
 
         response.json(game);
+    },
+
+    addNewGame : async (request, response) => {
+
+        const theGame = new Game(request.body);
+
+        const newGame = await Boardgame.save(theGame);
+
+        response.json(newGame);
     }
 };
 

@@ -41,7 +41,7 @@ class Boardgame {
         }
     }
 
-    // méthode static sur une class donc ici Boardgame, on pourra appeler Boargame.findAll()
+    // méthode static sur une class donc ici Boardgame, on pourra appeler Boardgame.findAll()
     static async findAll() {
 
         const { rows } = await db.query('SELECT * FROM boardgame;');
@@ -54,6 +54,24 @@ class Boardgame {
         const { rows } = await db.query('SELECT * FROM boardgame WHERE id = $1;', [id]);
 
         return new Boardgame(rows[0]);
+    }
+
+    static async save(theGame) {
+        
+
+        const data = [
+            theGame.name,
+            theGame.minAge,
+            theGame.minPlayers,
+            theGame.maxPlayers,
+            theGame.duration,
+            theGame.creator
+        ];
+
+        const query = await db.query ("INSERT INTO boardgame (name, minAge, minPlayers, maxPlayers, duration, creator) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;");
+
+        return data.push(theGame);
+
     }
 }
 
