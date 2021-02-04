@@ -16,6 +16,8 @@ class Boardgame {
         appeler :
         this.min_players = 4
         déclenchera :
+        this.minPlayers(4)
+        aura pour effet :
         this.minPlayers = 4
     */
 
