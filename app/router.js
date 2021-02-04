@@ -6,4 +6,6 @@ const router = Router();
 
 router.get('/boardgames', boardgameController.allBoardgames);
 
+router.get('/boardgames/:id', boardgameController.oneBoardgame);
+
 module.exports = router;

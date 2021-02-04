@@ -5,6 +5,15 @@ const boardgameController = {
         const games = await Boardgame.findAll();
 
         response.json(games);
+    },
+
+    oneBoardgame : async (request, response) => {
+
+        const gameId = request.params.id;
+
+        const game = await Boardgame.findOne(gameId);
+
+        response.json(game);
     }
 };
 
