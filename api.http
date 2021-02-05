@@ -1,16 +1,16 @@
-"@protocol= http",
-"@domainname= localhost",
-"@port= {{dotenv PORT}}",
-"@path=v1",
-"@baseUrl = {{protocol}}://{{domainname}}:{{port}}/{{path}}"
+@protocol= http
+@domainname= localhost
+@port= {{dotenv PORT}}
+@path=v1
+@baseUrl = {{protocol}}://{{domainname}}:{{port}}/{{path}}
 
 ### Route GET /boardgames
 
-GET http://localhost:3000/v1/boardgames
+GET {{baseUrl}}/boardgames
 
 ### Route GET /boardgames/{id}
 
-GET http://localhost:3000/v1/boardgames/4
+GET http://localhost:3001/v1/boardgames/1
 
 
 ### Ajout d'un jeu avec id
@@ -25,7 +25,7 @@ Content-Type: application/json
     "max_players": 6,
     "type" : "familial",
     "note" : 5,
-    "duration" : "30",
+    "duration" : 30,
     "creator" : "Jean-Louis Roubira"
 }
 

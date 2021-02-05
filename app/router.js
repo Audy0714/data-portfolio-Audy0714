@@ -4,10 +4,14 @@ const boardgameController = require('./controllers/boardgameController');
 
 const router = Router();
 
+const { validateBody } = require('./services/validator');
+
+const boardgameSchema = require('./schemas/boardgame');
+
 router.get('/boardgames', boardgameController.allBoardgames);
 
 router.get('/boardgames/:id', boardgameController.oneBoardgame);
 
-router.post('/boardgames', boardgameController.addNewGame);
+router.post('/boardgames',validateBody(boardgameSchema), boardgameController.addNewGame);
 
 module.exports = router;
