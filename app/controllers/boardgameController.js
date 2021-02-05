@@ -18,9 +18,9 @@ const boardgameController = {
 
     addNewGame : async (request, response) => {
 
-        const theGame = new Game(request.body);
+        const theGame = request.body;
 
-        const newGame = await Boardgame.save(theGame);
+        const newGame = await Boardgame.addOne(theGame);
 
         response.json(newGame);
     }

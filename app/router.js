@@ -8,6 +8,6 @@ router.get('/boardgames', boardgameController.allBoardgames);
 
 router.get('/boardgames/:id', boardgameController.oneBoardgame);
 
-router.post('boardgames', boardgameController.addNewGame);
+router.post('/boardgames', boardgameController.addNewGame);
 
 module.exports = router;

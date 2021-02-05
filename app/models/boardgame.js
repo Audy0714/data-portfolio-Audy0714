@@ -56,21 +56,21 @@ class Boardgame {
         return new Boardgame(rows[0]);
     }
 
-    static async save(theGame) {
-        
+    static async addOne(boardgame) {
+      
 
-        const data = [
-            theGame.name,
-            theGame.minAge,
-            theGame.minPlayers,
-            theGame.maxPlayers,
-            theGame.duration,
-            theGame.creator
-        ];
+        const result = await db.query ("INSERT INTO boardgame (name, min_age, min_players, max_players, type, note, duration, creator) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;", [
+            boardgame.name,
+            boardgame.min_age,
+            boardgame.min_players,
+            boardgame.max_players,
+            boardgame.type,
+            boardgame.note,
+            boardgame.duration,
+            boardgame.creator
+        ]).rows;
 
-        const query = await db.query ("INSERT INTO boardgame (name, minAge, minPlayers, maxPlayers, duration, creator) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;");
-
-        return data.push(theGame);
+        return result;
 
     }
 }

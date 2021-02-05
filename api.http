@@ -1,0 +1,39 @@
+"@protocol= http",
+"@domainname= localhost",
+"@port= {{dotenv PORT}}",
+"@path=v1",
+"@baseUrl = {{protocol}}://{{domainname}}:{{port}}/{{path}}"
+
+### Route GET /boardgames
+
+GET http://localhost:3000/v1/boardgames
+
+### Route GET /boardgames/{id}
+
+GET http://localhost:3000/v1/boardgames/4
+
+
+### Ajout d'un jeu avec id
+
+POST http://localhost:3000/v1/boardgames
+Content-Type: application/json
+
+{
+    "name": "Saboteur",
+    "min_age": 9,
+    "min_players": 3,
+    "max_players": 10,
+    "type" : "stratégie",
+    "note" : 4,
+    "duration" : "60 minutes",
+    "creator" : "Frédéric Moyersoen"
+}
+
+
+### Suppression d'un jeu
+
+DELETE {{baseUrl}}/boardgames
+
+### Modification d'un jeu
+
+UPDATE {{baseUrl}}/boardgames
