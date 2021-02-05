@@ -3,3 +3,4 @@
 
 init 2021-02-04T13:03:25Z Audrey Alexandre <audykei7907@gmail.com> # création de la table et du domaine posint
 check_players 2021-02-05T08:44:52Z Audrey Alexandre <audykei7907@gmail.com> # ajout d'une contrainte check pour min < max coté players
+boardgame/insert 2021-02-05T09:02:13Z Audrey Alexandre <audykei7907@gmail.com> # fonction d'insertion de jeu de société

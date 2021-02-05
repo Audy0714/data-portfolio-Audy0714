@@ -25,7 +25,7 @@ Content-Type: application/json
     "max_players": 6,
     "type" : "familial",
     "note" : 5,
-    "duration" : "30 minutes",
+    "duration" : "30",
     "creator" : "Jean-Louis Roubira"
 }
 

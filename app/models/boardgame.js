@@ -78,7 +78,25 @@ class Boardgame {
     // pas static car propre à chaque instance
     async save() {
         // props de this => insérer une ligne dans la BDD
-        
+        const { rows } = await db.query(`
+        SELECT *
+        FROM new_boardgame(
+            $1, $2,
+            $3, $4,
+            $5, $6,
+            $7, $8
+        );`, [
+            this.name,
+            this.minAge,
+            this.minPlayers,
+            this.maxPlayers,
+            this.type,
+            this.note,
+            this.duration,
+            this.creator
+        ]);
+
+        this.id = rows[0].id;
     }
 }
 

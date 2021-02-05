@@ -17,10 +17,16 @@ const boardgameController = {
     },
 
     addNewGame : async (request, response) => {
-
+        // les infos du jeu à ajouter
         const theGame = request.body;
 
-        const newGame = await Boardgame.addOne(theGame);
+        const newGame = new Boardgame(theGame);
+
+        await newGame.save();
+
+        // sans await, il va me manquer
+        // la certitude que tout s'est bien passé
+        // l'id
 
         response.json(newGame);
     }
