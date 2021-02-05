@@ -1,6 +1,6 @@
 @protocol= http
 @domainname= localhost
-@port= {{dotenv PORT}}
+@port= {{$dotenv PORT}}
 @path=v1
 @baseUrl = {{protocol}}://{{domainname}}:{{port}}/{{path}}
 
@@ -10,19 +10,19 @@ GET {{baseUrl}}/boardgames
 
 ### Route GET /boardgames/{id}
 
-GET http://localhost:3001/v1/boardgames/1
+GET {{baseUrl}}/boardgames/1
 
 
 ### Ajout d'un jeu avec id
 
-POST http://localhost:3000/v1/boardgames
+POST {{baseUrl}}/boardgames
 Content-Type: application/json
 
 {
     "name": "Dixit",
-    "min_age": 8,
-    "min_players": 3,
-    "max_players": 6,
+    "minAge": 8,
+    "minPlayers": 3,
+    "maxPlayers": 6,
     "type" : "familial",
     "note" : 5,
     "duration" : 30,
