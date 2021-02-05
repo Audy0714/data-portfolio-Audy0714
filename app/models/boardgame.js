@@ -7,6 +7,8 @@ class Boardgame {
     minAge;
     minPlayers;
     maxPlayers;
+    type;
+    note;
     duration;
     creator;
 
@@ -56,10 +58,9 @@ class Boardgame {
         return new Boardgame(rows[0]);
     }
 
-    static async addOne(boardgame) {
+    /*static async addOne(boardgame) {
       
-
-        const result = await db.query ("INSERT INTO boardgame (name, min_age, min_players, max_players, type, note, duration, creator) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;", [
+        const result = await db.query (`INSERT INTO boardgame (name, min_age, min_players, max_players, type, note, duration, creator) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;`, [
             boardgame.name,
             boardgame.min_age,
             boardgame.min_players,
@@ -70,8 +71,14 @@ class Boardgame {
             boardgame.creator
         ]).rows;
 
-        return result;
+        return new Boardgame (result);
 
+    }*/
+
+    // pas static car propre à chaque instance
+    async save() {
+        // props de this => insérer une ligne dans la BDD
+        
     }
 }
 

@@ -19,14 +19,14 @@ POST http://localhost:3000/v1/boardgames
 Content-Type: application/json
 
 {
-    "name": "Saboteur",
-    "min_age": 9,
+    "name": "Dixit",
+    "min_age": 8,
     "min_players": 3,
-    "max_players": 10,
-    "type" : "stratégie",
-    "note" : 4,
-    "duration" : "60 minutes",
-    "creator" : "Frédéric Moyersoen"
+    "max_players": 6,
+    "type" : "familial",
+    "note" : 5,
+    "duration" : "30 minutes",
+    "creator" : "Jean-Louis Roubira"
 }
 
 
