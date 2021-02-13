@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ### Suppression d'un jeu
 
-DELETE {{baseUrl}}/boardgames/21
+DELETE {{baseUrl}}/boardgames/10
 
 
 ### Modification d'un jeu

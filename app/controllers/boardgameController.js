@@ -54,11 +54,7 @@ const boardgameController = {
 
         } else {
 
-            const foundGame = new Boardgame(game);
-
-            console.log(foundGame);
-
-            await foundGame.delete();
+            await game.delete();
 
             response.status(200).json();
         }
@@ -71,7 +67,7 @@ const boardgameController = {
         // je récupère les nouvelles données
         const data = request.body;
 
-        let game = await Boardgame.findOne(id, data);
+        let game = await Boardgame.findOne(id);
         
         // si le jeu à modifier n'hexiste pas
         if (!game) {
@@ -80,13 +76,23 @@ const boardgameController = {
 
         } else {
 
-            const foundGame = new Boardgame(game);
+            for (const prop in data) {
 
-            console.log(`Le jeu trouvé est`, foundGame);
+                game.name = data.name,
+                game.minAge = data.minAge,
+                game.minPlayers = data.minPlayers,
+                data.maxPlayers = data.maxPlayers,
+                game.type = data.type,
+                game.note = data.note,
+                game.duration = data.duration,
+                game.creator = data.creator
 
-            await foundGame.update();
+                game[prop] = data[prop];
+            }
 
-            response.status(200).json(foundGame);
+            await game.update();
+
+            response.status(200).json(game);
         }
        
     }
