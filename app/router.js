@@ -14,4 +14,8 @@ router.get('/boardgames/:id', boardgameController.oneBoardgame);
 
 router.post('/boardgames',validateBody(boardgameSchema), boardgameController.addNewGame);
 
+router.delete('/boardgames/:id', boardgameController.deleteGame);
+
+router.patch('/boardgames/:id', boardgameController.updateOneBoardgame);
+
 module.exports = router;

@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT * FROM boardgame WHERE id = 2;
 
 ROLLBACK;

@@ -58,30 +58,42 @@ class Boardgame {
         return new Boardgame(rows[0]);
     }
 
-    /*static async addOne(boardgame) {
-      
-        const result = await db.query (`INSERT INTO boardgame (name, min_age, min_players, max_players, type, note, duration, creator) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;`, [
-            boardgame.name,
-            boardgame.min_age,
-            boardgame.min_players,
-            boardgame.max_players,
-            boardgame.type,
-            boardgame.note,
-            boardgame.duration,
-            boardgame.creator
-        ]).rows;
-
-        return new Boardgame (result);
-
-    }*/
-
-    // pas statique car propre à chaque instance
+    // pas statique car propre à chaque instance car ici on insère un nouveau jeu
     async save() {
         // props de this => insérer une ligne dans la bdd
         const { rows } = await db.query(`SELECT * FROM new_boardgame($1);`, [this]); // minAge
 
         this.id = rows[0].id;
     }
+
+    // pour supprimer un jeu
+    async delete() {
+     
+         const { rows } = await db.query(`DELETE FROM boardgame WHERE id = $1;`, [this]);
+            
+         this.id = rows[0].id;
+    }
+
+    // pour modifier un jeu
+    async update(id, data) {
+
+        const { rows } = await db.query(
+            `UPDATE boardgame
+                SET name = $2,
+                    min_age = $3,
+                    min_players = $4,
+                    max_players = $5,
+                    type = $6,
+                    note = $7,
+                    duration = $8,
+                    creator = $9
+                WHERE id = $1;`, [id, data.name, data.minAge, data.minPlayers, data.maxPlayers, data.type, data.note, data.duration, data.creator]
+        );
+
+        return new Boardgame(rows[0]);
+    }
+         
+    
 }
 
 module.exports = Boardgame;
