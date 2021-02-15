@@ -69,13 +69,13 @@ class Boardgame {
     // pour supprimer un jeu
     async delete() {
      
-         const { rows } = await db.query(`DELETE FROM boardgame WHERE id = $1;`, [this]);
+         const { rows } = await db.query(`DELETE FROM boardgame WHERE id = $1;`, [this.id]);
             
-         this.id = rows[0].id;
+         //this.id = rows[0].id;
     }
 
     // pour modifier un jeu
-    async update(id, data) {
+    async update() {
 
         const { rows } = await db.query(
             `UPDATE boardgame
@@ -87,13 +87,13 @@ class Boardgame {
                     note = $7,
                     duration = $8,
                     creator = $9
-                WHERE id = $1;`, [id, data.name, data.minAge, data.minPlayers, data.maxPlayers, data.type, data.note, data.duration, data.creator]
+                WHERE id = $1;`, [this.id, this.name, this.minAge, this.minPlayers, this.maxPlayers, this.type, this.note, this.duration, this.creator]
         );
 
-        return new Boardgame(rows[0]);
+
     }
          
     
-}
+};
 
 module.exports = Boardgame;
