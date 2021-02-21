@@ -1,12 +1,32 @@
+
 const Boardgame = require('../models/boardgame');
 
+
+/**
+ * Le controller chargé de centraliser le middleware concernant les jeux de société
+ */
 const boardgameController = {
+
+    // GET /boardgames
+
+    /**
+     * Middleware chargé de trouver tous les jeux de société
+     * @param {Express.Request} request - l'objet représentant la requête findAll() 
+     *  @param {Express.Response} response - l'objet représentant la réponse games
+     */
     allBoardgames : async (request, response) => {
         const games = await Boardgame.findAll();
 
         response.json(games);
     },
 
+    // GET /boardgames/:id
+
+    /**
+     * Middleware chargé de trouver un jeu de société via son id
+     * @param {Express.Request} request - l'objet représentant la requête findOne() 
+     * @param {Express.Response} response - l'objet représentant la réponse game
+     */
     oneBoardgame : async (request, response) => {
 
         const gameId = request.params.id;
@@ -16,6 +36,13 @@ const boardgameController = {
         response.json(game);
     },
 
+    // POST /boardgames/ (corps en JSON)
+    /**
+     * Middleware chargé d'ajouter des jeux de société 
+     * Retourne le nouveau jeu utilisant les nouvelles propositions
+     * @param {Express.Request} request - l'objet représentant la requête addNewGame
+     * @param {Express.Response} response - l'objet représentant la réponse newGame
+     */
     addNewGame : async (request, response) => {
         // les infos du jeu à ajouter
         const theGame = request.body;
@@ -40,6 +67,12 @@ const boardgameController = {
         response.json(newGame);
     },
 
+    // DELETE /boardgames/:id (corps en JSON)
+    /**
+     * Middleware chargé de supprimer un jeu via son id
+     * @param {Express.Request} request - l'objet représentant la requête
+     * @param {Express.Response} response - status 200 - le jeu est bien supprimé ou status 400 - le jeu n'existe pas 
+     */
     deleteGame : async (request, response) => {
 
         const gameId = request.params.id;
@@ -56,10 +89,18 @@ const boardgameController = {
 
             await game.delete();
 
-            response.status(200).json();
+            response.status(200).json(`Le jeu avec cette id ${gameId} a bien été suprrimé`);
         }
 
     },
+
+    // PATCH /boardgames/:id (corps en JSON)
+    /**
+     * Middleware chargé de modifier un jeu de société via son id
+     * Retourne le nouveau jeu utilisant les nouvelles propositions
+     * @param {Express.Request} request - l'objet représentant la requête updateOneBoardgame
+     * @param {Express.Response} response - l'objet représentant la réponse game
+     */
     updateOneBoardgame: async (request, response) => {
         // je récupère l'id du jeu à modifier
         const { id } = request.params;

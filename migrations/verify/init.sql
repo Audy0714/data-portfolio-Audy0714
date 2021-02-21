@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT * FROM boardgame WHERE id = 2;
+SELECT "name", creator FROM boardgame;
 
 ROLLBACK;

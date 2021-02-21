@@ -1,5 +1,19 @@
 const db = require('../database');
 
+/** 
+ * Un jeu de société
+ * @typedef {Object} Boardgame
+ * @property {Number} id - id du jeu
+ * @property {String} name - nom du jeu
+ * @property {Number} minAge - âge minimum
+ * @property {Number} minPlayers - nombre de joueur minimum
+ * @property {Number} maxPlayers - nombre de joueur maximum
+ * @property {String} type - type du jeu
+ * @property {Number} note - note donnée au jeu
+ * @property {Number} duration - temps de jeu d'une partie : en minutes ou heures/minutes
+ * @property {String} creator - créateur du jeu
+*/
+
 class Boardgame {
     id;
     name;
@@ -12,17 +26,8 @@ class Boardgame {
     duration;
     creator;
 
-    /*
-        setters (accesseurs)
 
-        appeler :
-        this.min_players = 4
-        déclenchera :
-        this.minPlayers(4)
-        aura pour effet :
-        this.minPlayers = 4
-    */
-
+    // mise en place de setters
     set min_players(val) {
     this.minPlayers = val;
     }
@@ -37,11 +42,20 @@ class Boardgame {
 
 
 
+    // mise en place d'un constructeur
     constructor(data = {}) {
         for (const prop in data) {
             this[prop] = data[prop];
         }
     }
+
+
+    /**
+     * Fonction pour trouver tous les jeux
+     * @static - méthode static
+     * @function findAll - trouve tous les jeux
+     * @returns {Promise} - la promesse des jeux trouvés
+     */
 
     // méthode static sur une class donc ici Boardgame, on pourra appeler Boardgame.findAll()
     static async findAll() {
@@ -51,12 +65,25 @@ class Boardgame {
         return rows.map(game => new Boardgame(game));
     }
 
+    /**
+     * Fonction pour trouver un jeu via son id
+     * @static - méthode static
+     * @function findOne - trouve le jeu via son id
+     * @param {Number} id.path.required - l'id du jeu à chercher
+     * @returns {Promise} - la promesse du bon jeu trouvé
+     */
+
     static async findOne(id) {
 
         const { rows } = await db.query('SELECT * FROM boardgame WHERE id = $1;', [id]);
 
         return new Boardgame(rows[0]);
     }
+
+    /**
+     * Fonction pour sauvegarder un nouveau jeu
+     * @function save
+     */
 
     // pas statique car propre à chaque instance car ici on insère un nouveau jeu
     async save() {
@@ -66,15 +93,22 @@ class Boardgame {
         this.id = rows[0].id;
     }
 
-    // pour supprimer un jeu
+     /**
+     * Fonction pour supprimer un jeu
+     * @function delete
+     */
+
     async delete() {
      
          const { rows } = await db.query(`DELETE FROM boardgame WHERE id = $1;`, [this.id]);
             
-         //this.id = rows[0].id;
     }
 
-    // pour modifier un jeu
+     /**
+     * Fonction pour modifier un jeu
+     * @function update
+     */
+
     async update() {
 
         const { rows } = await db.query(
@@ -90,10 +124,9 @@ class Boardgame {
                 WHERE id = $1;`, [this.id, this.name, this.minAge, this.minPlayers, this.maxPlayers, this.type, this.note, this.duration, this.creator]
         );
 
-
     }
-         
     
 };
+
 
 module.exports = Boardgame;

@@ -19,7 +19,7 @@ INSERT INTO boardgame(
 	game->>'type', (game->>'note')::int, 
 	(game->>'duration' || ' minutes')::interval, game->>'creator'
 )
-RETURNING *;
+RETURNING *
 $$ LANGUAGE sql;
 
 COMMIT;

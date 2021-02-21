@@ -1,4 +1,3 @@
-
 const { Pool } = require('pg');
 
 // ici, les informations de connection sont récupérées dans l'environnement

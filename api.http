@@ -21,20 +21,20 @@ POST {{baseUrl}}/boardgames
 Content-Type: application/json
 
 {
-    "name": "Dixit",
+    "name": "Monopoly",
     "minAge": 8,
-    "minPlayers": 3,
+    "minPlayers": 2,
     "maxPlayers": 6,
-    "type" : "familial",
+    "type" : "immobilier",
     "note" : 5,
-    "duration" : 30,
-    "creator" : "Jean-Louis Roubira"
+    "duration" : 120,
+    "creator" : "Charles Darrow"
 }
 
 
 ### Suppression d'un jeu
 
-DELETE {{baseUrl}}/boardgames/1
+DELETE {{baseUrl}}/boardgames/21
 
 
 ### Modification d'un jeu
@@ -49,6 +49,6 @@ Content-Type: application/json
     "maxPlayers": 6,
     "type" : "familial",
     "note" : 5,
-    "duration" : 30,
+    "duration" : 40,
     "creator" : "Jean-Louis Roubira"
 }

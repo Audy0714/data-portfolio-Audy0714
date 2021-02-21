@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT duration, creator FROM new_boardgame;
 
 ROLLBACK;
