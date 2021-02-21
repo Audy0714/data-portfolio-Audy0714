@@ -4,8 +4,11 @@
   "description": "Une API REST pour gérer une collection de jeux de société",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "mocha",
+    "start": "node index.js",
+    "deploy": "sqitch deploy db:pg:boardgame",
+    "revert": "sqitch revert db:pg:boardgame",
+    "verify": "sqitch verify db:pg:boardgame"
   },
   "repository": {
     "type": "git",
@@ -24,9 +27,11 @@
   },
   "homepage": "https://github.com/O-clock-NN/data-portfolio-Audy0714#readme",
   "dependencies": {
+    "chai": "^4.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^17.3.0",
+    "mocha": "^8.3.0",
     "pg": "^8.5.1"
   }
 }

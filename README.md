@@ -8,16 +8,19 @@ Une API REST pour gérer une collection de jeux de société
   - dotenv 
   - Express
   - Joi
+  - pg
 - PostgreSQL 11+
   - Sqitch
 
 ## Configuration
 
-- npm init pour installer les dépendances 
+- npm init -y pour installer les dépendances 
 - psql -d boardgame -f seeding.sql pour insérer les données de la table
 - sqitch deploy db:pg:boardgame
 - sqitch revert db:pg:boardgame
 - sqitch verify db:pg:boardgame
+- nodemon index.js pour se connecter à l'api REST
+- tests unitaires => npm test
 
 ## Structure des données dans conception => Boardgames.mcd
 

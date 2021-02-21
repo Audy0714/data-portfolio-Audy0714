@@ -12,7 +12,7 @@ GET {{baseUrl}}/boardgames
 
 ### Route GET /boardgames/{id}
 
-GET {{baseUrl}}/boardgames/1
+GET {{baseUrl}}/boardgames/4
 
 
 ### Ajout d'un jeu avec id
@@ -34,12 +34,12 @@ Content-Type: application/json
 
 ### Suppression d'un jeu
 
-DELETE {{baseUrl}}/boardgames/21
+DELETE {{baseUrl}}/boardgames/4
 
 
 ### Modification d'un jeu
 
-PATCH {{baseUrl}}/boardgames/4
+PATCH {{baseUrl}}/boardgames/3
 Content-Type: application/json
 
 {
