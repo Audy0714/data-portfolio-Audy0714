@@ -12,7 +12,7 @@ const boardgameController = {
     /**
      * Middleware chargé de trouver tous les jeux de société
      * @param {Express.Request} request - l'objet représentant la requête findAll() 
-     *  @param {Express.Response} response - l'objet représentant la réponse games
+     * @param {Express.Response} response - l'objet représentant la réponse games
      */
     allBoardgames : async (request, response) => {
         const games = await Boardgame.findAll();
@@ -89,7 +89,7 @@ const boardgameController = {
 
             await game.delete();
 
-            response.status(200).json(`Le jeu avec cette id ${gameId} a bien été suprrimé`);
+            response.status(200).json(`Le jeu avec cette id ${gameId} a bien été supprimé`);
         }
 
     },

@@ -19,7 +19,7 @@ Une API REST pour gérer une collection de jeux de société
 - sqitch deploy db:pg:boardgame
 - sqitch revert db:pg:boardgame
 - sqitch verify db:pg:boardgame
-- nodemon index.js pour se connecter à l'api REST
+- node index.js pour se connecter à l'api REST
 - tests unitaires => npm test
 
 ## Structure des données dans conception => Boardgames.mcd
